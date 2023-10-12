@@ -18,8 +18,13 @@
       "sizes": "512x512"
     }
   ],
+  "web_accessible_resources": [{
+    "matches": ["<all_urls>"],
+    "resources": ["lib/chatgpt.js"]
+}],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff" 
+ 
 }
