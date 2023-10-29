@@ -76,15 +76,12 @@ const SideBar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`./assets/dillon.jpeg`}
+                  src={`./assets/logo1.png`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
               <Box textAlign="center">
-          
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Sale Person
-                </Typography>
+         
               </Box>
             </Box>
           )}

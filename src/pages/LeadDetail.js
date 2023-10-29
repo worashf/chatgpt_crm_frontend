@@ -14,8 +14,8 @@ import LoadingSpin from "react-loading-spin";
 
 const openai = new OpenAI({ apiKey: process.env.REACT_APP_OPENAI_API_KEY, dangerouslyAllowBrowser: true });
 
-const fetchData = async ( chatQuestion ) => {
-    
+const fetchData = async (chatQuestion) => {
+
     try {
         const answer = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
@@ -45,19 +45,19 @@ const LeadDetail = () => {
     const [openModal, setOpenModal] = useState(false);
 
 
-    useEffect(() =>{
-        if(question){
+    useEffect(() => {
+        if (question) {
             setChatQuest(question)
-    }
-        else{
-
-            setChatQuest(`Write cold mail for company ${lead.customer.company_name}  about lead ${lead.lead_name} with description ${lead.description} `)
-       
         }
-    },[question])
+        else {
+
+            setChatQuest(`Write cold mail to  company ${lead.customer.company_name}  about lead ${lead.lead_name} with description ${lead.description}  best regard from Dillon CRM`)
+
+        }
+    }, [question])
 
 
-    
+
     const handleOpenModal = () => {
         setOpenModal(true);
     };
@@ -66,16 +66,16 @@ const LeadDetail = () => {
         setOpenModal(false);
     };
 
-  const handleQuestionChange =(e) =>{
-    setQuestion(e.target.value)
-  }
+    const handleQuestionChange = (e) => {
+        setQuestion(e.target.value)
+    }
     async function handleClick(e) {
         e.preventDefault()
         try {
-            
+
             setLoading(true);
 
-            const text = await fetchData(chatQuest );
+            const text = await fetchData(chatQuest);
 
             setLoading(false);
 
@@ -124,14 +124,16 @@ const LeadDetail = () => {
                                 left: "20%",
                                 bottom: "2%",
                                 transform: "translate(-50 , -50%)",
-                                width: "70%",
+                                width: "80%",
                                 p: 3,
-                                overflowY: "scroll"
+                                alignContent:"center",
+
+                                overflowX: "scroll"
 
                             }}>
                                 <h1><SmartToyIcon />{lead.lead_name}</h1>
 
-                                <TextField
+                                {/* <TextField
 
                                     variant="outlined"
                                     margin="normal"
@@ -141,7 +143,7 @@ const LeadDetail = () => {
                                     value={question}
                                     onChange={handleQuestionChange}
 
-                                />
+                                /> */}
                                 <TextField
 
                                     variant="outlined"
@@ -165,12 +167,24 @@ const LeadDetail = () => {
                                     <LoadingSpin primaryColor="#ffffff" numberOfRotationsInAnimation={2} size='30px' />
                                 </Box>}
                                 {completedCode && (
+                                    <>
                                     <Box sx={{
                                         color: colors.greenAccent[300],
                                         ml: "10px",
+
+                                        whiteSpace: "pre-wrap",
+
+                                        textOverflow: "ellipsis",
+                                        width: "90%"
                                     }} >
-                                        <pre>{completedCode}</pre>
+                                        <p sx={{
+                                            whiteSpace: "pre-wrap",
+                                            wordWrap: "break-word",
+                                            padding: "10px"
+                                        }}>{completedCode}</p>
                                     </Box>
+    
+                                    </>
                                 )}
                             </Paper>
                         </Modal>
